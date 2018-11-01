@@ -139,8 +139,7 @@ static int cb(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
 	u_int32_t id = print_pkt(nfa);
 	printf("entering callback\n");
 	
-	if (isBlocked) return nfq_set_verdict(qh, id, NF_DROP, 0, NULL);
-	else return nfq_set_verdict(qh, id, NF_ACCEPT, 0, NULL);
+	return nfq_set_verdict(qh, id, (isBlocked?NF_DROP:NF_ACCEPT), 0, NULL);
 }
 
 int main(int argc, char **argv)
