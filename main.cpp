@@ -41,8 +41,8 @@ void filter(unsigned char *data, int ret)
 	const char *hostLoc = "Host: ";
 	
 	isBlocked = 0;
-
-	if (libnet_ipv4_data->ip_p  == IPPROTO_TCP)
+	
+	if (libnet_ipv4_data->ip_v == 4 && libnet_ipv4_data->ip_p  == IPPROTO_TCP)
 	{
 		struct libnet_tcp_hdr *libnet_tcp_data = (libnet_tcp_hdr *)(((uint8_t *)(libnet_ipv4_data)) + (libnet_ipv4_data->ip_hl << 2));
 		
